@@ -9,13 +9,10 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class BaseTest {
 
-    protected Config config = Config.DEFAULT;
-
     @BeforeSuite
     public void setup() {
-        config.init();
-        System.setProperty(config.getNameChromeDriver(), config.getPathChromeDriver());
-        Configuration.browser = config.getBrowserName();
+        System.setProperty(Config.getNameChromeDriver(), Config.getPathChromeDriver());
+        Configuration.browser = Config.getBrowserName();
     }
 
     protected <T>T openPage(String url, Class<T> page) {
