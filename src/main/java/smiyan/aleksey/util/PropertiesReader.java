@@ -1,6 +1,7 @@
 package smiyan.aleksey.util;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
@@ -11,8 +12,8 @@ public class PropertiesReader {
     static {
         PROPERTIES = new Properties();
         URL prop = ClassLoader.getSystemResource("config.properties");
-        try {
-            PROPERTIES.load(prop.openStream());
+        try(InputStream is = prop.openStream()) {
+            PROPERTIES.load(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
